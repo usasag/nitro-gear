@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxdemo.controllers.EscolhaCarrosController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" prefWidth="600.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="blackOutBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="175.0" text="Black Out" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets bottom="35.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="blueStripBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="175.0" text="Blue Strip" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets bottom="35.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="greenRocketBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="175.0" text="Green Rocket" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets bottom="35.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="pinkBulletBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="175.0" text="Pink Bullet" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets bottom="35.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="redRunnerBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="175.0" text="Red Runner" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets bottom="35.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="whiteSnakeBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="175.0" text="White Snake" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets bottom="35.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Line endX="0.0" endY="600.0" startX="0.0" startY="0.0" strokeWidth="2.0" />
+            <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0">
+               <children>
+                  <Text text="Pressione 'K' para adicionar o Jogador 2" wrappingWidth="375.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font></Text>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="comecarCorridaBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="330.0" text="Começar Corrida">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>

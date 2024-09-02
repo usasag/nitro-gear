@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-image: url(&quot;background.jpg&quot;);" stylesheets="@../../../../java/com/example/javafxdemo/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxdemo.controllers.HelpController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Text text="Manual do jogo" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+
+    <ImageView fx:id="imgJogo" fitHeight="200" fitWidth="300" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.rowSpan="3" />
+
+    <Text text="Controles J1" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+    <Line startX="100" startY="230" endX="150" endY="200" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+
+    <Text text="Controles J2" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+    <Line startX="100" startY="260" endX="150" endY="230" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+
+    <Text text="Carro do jogador 1" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+    <Text text="Carro do jogador 2" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+
+    <Text text="Dicas:" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+    <Text text="Não bata no outro carro! Isso pode desacelerar você." GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    <Text text="Fique sempre dentro da pista para atingir a velocidade máxima." GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    <Text text="Fique atento à passagem de marchas para ser o mais rápido possível." GridPane.rowIndex="3" GridPane.columnIndex="1" />
+    <Text text="Cruze a linha de chegada na maior colocação possível para ganhar a maior quantidade de pontos." GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+    <Button text="Voltar ao Menu" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+</GridPane>
+</VBox>
