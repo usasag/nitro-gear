@@ -1,38 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-image: url(&quot;background.jpg&quot;);" stylesheets="@../../../../java/com/example/javafxdemo/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxdemo.controllers.HelpController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
 
-    <Text text="Manual do jogo" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-
-    <ImageView fx:id="imgJogo" fitHeight="200" fitWidth="300" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.rowSpan="3" />
-
-    <Text text="Controles J1" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-    <Line startX="100" startY="230" endX="150" endY="200" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-
-    <Text text="Controles J2" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-    <Line startX="100" startY="260" endX="150" endY="230" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-
-    <Text text="Carro do jogador 1" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-    <Text text="Carro do jogador 2" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-
-    <Text text="Dicas:" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-
-    <Text text="Não bata no outro carro! Isso pode desacelerar você." GridPane.rowIndex="1" GridPane.columnIndex="1" />
-    <Text text="Fique sempre dentro da pista para atingir a velocidade máxima." GridPane.rowIndex="2" GridPane.columnIndex="1" />
-    <Text text="Fique atento à passagem de marchas para ser o mais rápido possível." GridPane.rowIndex="3" GridPane.columnIndex="1" />
-    <Text text="Cruze a linha de chegada na maior colocação possível para ganhar a maior quantidade de pontos." GridPane.rowIndex="4" GridPane.columnIndex="1" />
-
-    <Button text="Voltar ao Menu" GridPane.rowIndex="6" GridPane.columnIndex="1" />
-</GridPane>
-</VBox>
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="800.0" prefWidth="1280.0">
+         <children>
+            <AnchorPane prefHeight="811.0" prefWidth="674.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="174.0" layoutX="36.0" layoutY="161.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../../java/com/example/javafxdemo/carsprites/macaco.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="29.0" layoutY="74.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Manual do jogo">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="66.0" fitWidth="84.0" layoutX="171.0" layoutY="245.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../../java/com/example/javafxdemo/carsprites/controle_ps2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="174.0" layoutX="36.0" layoutY="333.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../../java/com/example/javafxdemo/carsprites/macaco.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="64.0" fitWidth="84.0" layoutX="181.0" layoutY="419.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../../java/com/example/javafxdemo/carsprites/controle_ps2.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="voltarButton" layoutX="22.0" layoutY="739.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="Voltar">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="671.0" prefHeight="803.0" prefWidth="611.0">
+               <children>
+                  <Text layoutX="27.0" layoutY="69.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Dicas:">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Text>
+                  <Line endX="-14.0" endY="793.2000122070312" layoutX="14.0" layoutY="14.0" startX="-14.000024795532227" startY="-13.200002670288086" strokeWidth="10.0" />
+                  <Text layoutX="51.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Não bata no outro carro! Isso pode desacelerar você." wrappingWidth="500.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="52.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fique sempre dentro da pista para atingir a velocidade máxima." wrappingWidth="500.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="57.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fique atento a passagem de marchas para ser o mais rápido possível." wrappingWidth="500.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="60.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cruze a linha de chegada na melhor colocação possível para ganhar a maior quantidade de pontos." wrappingWidth="500.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

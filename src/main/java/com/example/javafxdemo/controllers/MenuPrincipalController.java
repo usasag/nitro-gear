@@ -12,6 +12,7 @@ public class MenuPrincipalController {
     @FXML
     private Button exitButton;
 
+
     private Main mainApp;
 
     public void setMainApp(Main mainApp) {
@@ -29,7 +30,11 @@ public class MenuPrincipalController {
         });
 
         helpButton.setOnAction(event -> {
-            System.out.println("null");
+            try {
+                mainApp.mostrarHelp();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         exitButton.setOnAction(event -> {

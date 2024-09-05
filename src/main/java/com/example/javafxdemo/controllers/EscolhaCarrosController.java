@@ -24,6 +24,8 @@ public class EscolhaCarrosController {
     private Button redRunnerBtn;
     @FXML
     private Button whiteSnakeBtn;
+    @FXML
+    private Button voltarBtn;
 
     private Main mainApp;
     private Veiculo veiculoEscolhido;
@@ -40,6 +42,14 @@ public class EscolhaCarrosController {
         pinkBulletBtn.setOnAction(event -> selecionarCarro("PinkBullet"));
         redRunnerBtn.setOnAction(event -> selecionarCarro("RedRunner"));
         whiteSnakeBtn.setOnAction(event -> selecionarCarro("WhiteSnake"));
+
+        voltarBtn.setOnAction(event -> {
+            try {
+                mainApp.mostrarMenuPrincipal();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         comecarCorridaBtn.setOnAction(event -> {
             try {

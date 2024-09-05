@@ -38,6 +38,7 @@ public class Main extends Application {
         // Controlador da ajuda
         HelpController controller = fxmlLoader.getController();
         controller.setMainApp(this);
+        
         stage.show();
     }
 
@@ -51,6 +52,10 @@ public class Main extends Application {
         controller.setMainApp(this);
 
         stage.show();
+    }
+
+    public void voltar() throws Exception {
+        mostrarMenuPrincipal();
     }
 
     public void iniciarCorrida(Veiculo veiculoEscolhido) throws Exception {

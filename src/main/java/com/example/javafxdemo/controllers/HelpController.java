@@ -3,11 +3,10 @@ package com.example.javafxdemo.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import com.example.javafxdemo.Main;
-
 public class HelpController {
     
     @FXML
-    private Button backButton;
+    private Button voltarButton;
 
     private Main mainApp;
 
@@ -17,7 +16,7 @@ public class HelpController {
 
     @FXML
     private void initialize() {
-        backButton.setOnAction(event -> {
+        voltarButton.setOnAction(event -> {
             try {
                 mainApp.mostrarMenuPrincipal();
             } catch (Exception e) {
@@ -25,5 +24,4 @@ public class HelpController {
             }
         });
     }
-
 }
