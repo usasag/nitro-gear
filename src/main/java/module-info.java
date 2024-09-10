@@ -1,6 +1,7 @@
 module com.example.javafxdemo {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
     opens com.example.javafxdemo to javafx.fxml;
     opens com.example.javafxdemo.controllers to javafx.fxml;
