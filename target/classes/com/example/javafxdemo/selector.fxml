@@ -23,7 +23,7 @@
                <children>
                   <ImageView fx:id="carroPreview" fitHeight="150.0" fitWidth="200.0" layoutX="302.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../java/com/example/javafxdemo/carsprites/BlueStrip.png" />
+                        <Image url="@../../../carsprites/BlueStrip.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="CENTER" prefWidth="600.0" />

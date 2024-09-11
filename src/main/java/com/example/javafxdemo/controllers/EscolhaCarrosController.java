@@ -1,11 +1,14 @@
 package com.example.javafxdemo.controllers;
 
+import com.example.javafxdemo.race.RacePlay;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import com.example.javafxdemo.Main;
 import com.example.javafxdemo.logic.Veiculo;
+
+import java.awt.*;
 
 public class EscolhaCarrosController {
     @FXML
@@ -53,7 +56,12 @@ public class EscolhaCarrosController {
 
         comecarCorridaBtn.setOnAction(event -> {
             try {
-                mainApp.iniciarCorrida(veiculoEscolhido);
+//                mainApp.iniciarCorrida(veiculoEscolhido)
+                EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new RacePlay();
+                    }
+                });
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -63,12 +71,15 @@ public class EscolhaCarrosController {
     }
 
     private void selecionarCarro(String nomeCarro) {
-        Image sprite = new Image("./carsprites/" + nomeCarro + ".png");
+        comecarCorridaBtn.setDisable(false);
+        System.out.println("antes do sprite");
+        System.out.println("sprite: " + nomeCarro);
+        Image sprite = new Image(getClass().getResourceAsStream("/carsprites/" + nomeCarro + ".png"));
         carroPreview.setImage(sprite);
-
+        System.out.println("depois do sprite");
         double[] velocidadesMaximas = {50, 100, 150}; // Exemplo de velocidades para 3 marchas
         veiculoEscolhido = new Veiculo(nomeCarro, sprite, velocidadesMaximas, 5);
 
-        comecarCorridaBtn.setDisable(false);
+//        comecarCorridaBtn.setDisable(false);
     }
 }

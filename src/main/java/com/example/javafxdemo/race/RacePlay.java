@@ -95,16 +95,16 @@ public class RacePlay extends JFrame {
                     drawPanel.repaint();
                 }
             });
-            String VK_DOWN = "VK_DOWN";
-            KeyStroke WVK_DOWN = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
-            inputMap.put(WVK_DOWN, VK_DOWN);
-            actionMap.put(VK_DOWN, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    pos -= 200;
-                    drawPanel.repaint();
-                }
-            });
+//            String VK_DOWN = "VK_DOWN";
+//            KeyStroke WVK_DOWN = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
+//            inputMap.put(WVK_DOWN, VK_DOWN);
+//            actionMap.put(VK_DOWN, new AbstractAction() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    pos -= 200;
+//                    drawPanel.repaint();
+//                }
+//            });
         }
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
