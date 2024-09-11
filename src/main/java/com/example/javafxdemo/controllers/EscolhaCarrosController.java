@@ -59,7 +59,7 @@ public class EscolhaCarrosController {
 //                mainApp.iniciarCorrida(veiculoEscolhido)
                 EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        new RacePlay();
+                        new RacePlay(veiculoEscolhido);
                     }
                 });
             } catch (Exception e) {

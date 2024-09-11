@@ -1,4 +1,6 @@
 package com.example.javafxdemo.race;
+import com.example.javafxdemo.logic.Veiculo;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -26,7 +28,8 @@ public class RacePlay extends JFrame {
     List<Line> lines = new ArrayList<RacePlay.Line>();
     List<Integer> listValues = new ArrayList<Integer>();
     DrawPanel drawPanel = new DrawPanel();
-    public RacePlay() {
+    public RacePlay(Veiculo veiculoEscolhido) {
+        System.out.println(veiculoEscolhido.getNome());
         for (int i = 0; i < 1600; i++) {
             Line line = new Line();
             line.z = i * segL;
@@ -71,7 +74,7 @@ public class RacePlay extends JFrame {
             actionMap.put(VK_LEFT, new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    playerX -= 200;
+                    playerX -= 20;
                     drawPanel.repaint();
                 }
             });
@@ -81,7 +84,7 @@ public class RacePlay extends JFrame {
             actionMap.put(VK_RIGHT, new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    playerX += 200;
+                    playerX += 20;
                     drawPanel.repaint();
                 }
             });
@@ -91,7 +94,7 @@ public class RacePlay extends JFrame {
             actionMap.put(VK_UP, new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    pos += 200;
+                    pos += 100;
                     drawPanel.repaint();
                 }
             });
@@ -158,7 +161,7 @@ public class RacePlay extends JFrame {
                                 "C:/Users/HP/Desktop/paintr/tangarfa/workspace/java-tmz-test/ressource/cropped-sky-web-background.jpg")),
                         0, 0, this);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
             }
 
@@ -187,10 +190,10 @@ public class RacePlay extends JFrame {
             return new Dimension(D_W, D_H);
         }
     }
-    public static void main(String[] args) {
+    public static void main(Veiculo veiculoEscolhido) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RacePlay();
+                new RacePlay(veiculoEscolhido);
             }
         });
     }
