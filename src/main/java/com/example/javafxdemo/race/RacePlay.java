@@ -118,7 +118,7 @@ public class RacePlay extends JFrame {
             // Desenhar a imagem fixa abaixo do sprite do carro
             if (carImage != null) {
                 int x = (getWidth() - carImage.getWidth(this)) / 2; // Centralizar horizontalmente
-                int y = getHeight() - carImage.getHeight(this) - 50; // Posição vertical ajustada
+                int y = getHeight() - carImage.getHeight(this); // Posição vertical ajustada
                 g.drawImage(carImage, x, y, this);
             }
         }
