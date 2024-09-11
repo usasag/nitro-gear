@@ -1,10 +1,12 @@
 package com.example.javafxdemo.race;
+
 import com.example.javafxdemo.logic.Veiculo;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 
 public class RacePlay extends JFrame {
     private static final int D_W = 1500;
@@ -28,6 +29,7 @@ public class RacePlay extends JFrame {
     List<Line> lines = new ArrayList<RacePlay.Line>();
     List<Integer> listValues = new ArrayList<Integer>();
     DrawPanel drawPanel = new DrawPanel();
+
     public RacePlay(Veiculo veiculoEscolhido) {
         System.out.println(veiculoEscolhido.getNome());
         for (int i = 0; i < 1600; i++) {
@@ -41,7 +43,6 @@ public class RacePlay extends JFrame {
                 if (line.y < 0) {
                     line.y = 0;
                 }
-
             }
             if (i % 2 == 0) {
                 line.spriteX = -2.5;
@@ -64,8 +65,18 @@ public class RacePlay extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
     private class DrawPanel extends JPanel {
+        private Image carImage;
+
         public DrawPanel() {
+            // Carregar imagem do carro
+            try {
+                carImage = ImageIO.read(getClass().getResourceAsStream("/carsprites/BlackOut.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             String VK_LEFT = "VK_LEFT";
             KeyStroke W = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0);
             InputMap inputMap = getInputMap(WHEN_IN_FOCUSED_WINDOW);
@@ -94,26 +105,24 @@ public class RacePlay extends JFrame {
             actionMap.put(VK_UP, new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    pos += 100;
+                    pos += 200;
                     drawPanel.repaint();
                 }
             });
-//            String VK_DOWN = "VK_DOWN";
-//            KeyStroke WVK_DOWN = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
-//            inputMap.put(WVK_DOWN, VK_DOWN);
-//            actionMap.put(VK_DOWN, new AbstractAction() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    pos -= 200;
-//                    drawPanel.repaint();
-//                }
-//            });
         }
+
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             drawValues(g);
 
+            // Desenhar a imagem fixa abaixo do sprite do carro
+            if (carImage != null) {
+                int x = (getWidth() - carImage.getWidth(this)) / 2; // Centralizar horizontalmente
+                int y = getHeight() - carImage.getHeight(this) - 50; // Posição vertical ajustada
+                g.drawImage(carImage, x, y, this);
+            }
         }
+
         private void drawValues(Graphics g) {
             int startPos = pos / segL;
             double x = 0, dx = 0;
@@ -129,25 +138,18 @@ public class RacePlay extends JFrame {
                     Color grass = ((n / 2) % 2) == 0 ? new Color(16, 200, 16) : new Color(0, 154, 0);
                     Color rumble = ((n / 2) % 2) == 0 ? new Color(255, 255, 255) : new Color(255, 0, 0);
                     Color road = Color.black;
-                    Color midel =  ((n / 2) % 2) == 0 ? new Color(255, 255, 255) : new Color(0, 0, 0);
+                    Color midel = ((n / 2) % 2) == 0 ? new Color(255, 255, 255) : new Color(0, 0, 0);
 
-                    Line p = null;
-                    if (n == 0) {
-                        p = l;
-                    } else {
-                        p = lines.get((n - 1) % N);
-                    }
+                    Line p = (n == 0) ? l : lines.get((n - 1) % N);
+
                     drawQwad(g, grass, 0, (int) p.Y, with, 0, (int) l.Y, with);
                     drawQwad(g, rumble, (int) p.X, (int) p.Y, (int) (p.W * 1.5), (int) l.X, (int) l.Y,
                             (int) (l.W * 1.5));
-
                     drawQwad(g, road, (int) p.X, (int) p.Y, (int) (p.W * 1.4), (int) l.X, (int) l.Y,
                             (int) (l.W * 1.4));
-
                     drawQwad(g, midel, (int) p.X, (int) p.Y, (int) (p.W * 0.8), (int) l.X, (int) l.Y,
                             (int) (l.W * 0.8));
-                    drawQwad(g, road, (int) p.X, (int) p.Y, (int) (p.W * 0.7), (int) l.X, (int) l.Y, (int) (l.W* 0.7));
-
+                    drawQwad(g, road, (int) p.X, (int) p.Y, (int) (p.W * 0.7), (int) l.X, (int) l.Y, (int) (l.W * 0.7));
                 }
             }
 //draw Skye
