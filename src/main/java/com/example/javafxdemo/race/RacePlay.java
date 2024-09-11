@@ -72,40 +72,44 @@ public class RacePlay extends JFrame {
         public DrawPanel() {
             // Carregar imagem do carro
             try {
-                carImage = ImageIO.read(getClass().getResourceAsStream("/carsprites/BlackOut.png"));
+                carImage = ImageIO.read(getClass().getResourceAsStream("/carsprites/GenericCar.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            String VK_LEFT = "VK_LEFT";
-            KeyStroke W = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0);
+//          VIRAR PARA A ESQUERDA USANDO A
+            String VK_A = "VK_A";
+            KeyStroke W = KeyStroke.getKeyStroke(KeyEvent.VK_A, 0);
             InputMap inputMap = getInputMap(WHEN_IN_FOCUSED_WINDOW);
-            inputMap.put(W, VK_LEFT);
+            inputMap.put(W, VK_A);
             ActionMap actionMap = getActionMap();
-            actionMap.put(VK_LEFT, new AbstractAction() {
+            actionMap.put(VK_A, new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     playerX -= 20;
+                    pos += 500;
                     drawPanel.repaint();
                 }
             });
-            String VK_RIGHT = "VK_RIGHT";
-            KeyStroke WVK_RIGHT = KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0);
-            inputMap.put(WVK_RIGHT, VK_RIGHT);
-            actionMap.put(VK_RIGHT, new AbstractAction() {
+//          VIRAR PARA A DIREITA USANDO D
+            String VK_D = "VK_D";
+            KeyStroke WVK_D = KeyStroke.getKeyStroke(KeyEvent.VK_D, 0);
+            inputMap.put(WVK_D, VK_D);
+            actionMap.put(VK_D, new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     playerX += 20;
+                    pos += 500;
                     drawPanel.repaint();
                 }
             });
-            String VK_UP = "VK_UP";
-            KeyStroke WVK_UP = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0);
-            inputMap.put(WVK_UP, VK_UP);
-            actionMap.put(VK_UP, new AbstractAction() {
+//          ACELERAR USANDO W
+            String VK_W = "VK_W";
+            KeyStroke WVK_W = KeyStroke.getKeyStroke(KeyEvent.VK_W, 0);
+            inputMap.put(WVK_W, VK_W);
+            actionMap.put(VK_W, new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    pos += 200;
+                    pos += 500;
                     drawPanel.repaint();
                 }
             });
