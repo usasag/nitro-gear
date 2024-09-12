@@ -18,20 +18,68 @@ import javax.swing.*;
 public class RacePlay extends JFrame {
     private static final int D_W = 1500;
     private static final int D_H = 1200;
-    int with = 1600;
-    int height = 768;
-    int roadW = 768;
-    int segL = 768;
-    double camD = 0.84;
-    int N;
-    int playerX = 0;
-    int pos = 0;
-    List<Line> lines = new ArrayList<RacePlay.Line>();
-    List<Integer> listValues = new ArrayList<Integer>();
-    DrawPanel drawPanel = new DrawPanel();
+    private int with = 1600;
+    private int height = 768;
+    private int roadW = 768;
+    private int segL = 768;
+    private double camD = 0.84;
+    private int N;
+    private int playerX = 0;
+    private int pos = 0;
+    private boolean upPressed = false;
+    private boolean downPressed = false;
+    private boolean leftPressed = false;
+    private boolean rightPressed = false;
+    private double velocidade = 0;
+    private double aceleracao = 20;
+    private double desaceleracao = 1;
+    private double frenagem = 5;
+    private double velocidadeMaxima = 500;
+    private List<Line> lines = new ArrayList<RacePlay.Line>();
+    private List<Integer> listValues = new ArrayList<Integer>();
+    private DrawPanel drawPanel = new DrawPanel();
 
     public RacePlay(Veiculo veiculoEscolhido) {
         System.out.println(veiculoEscolhido.getNome());
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_W:
+                        upPressed = true;
+                        break;
+                    case KeyEvent.VK_S:
+                        downPressed = true;
+                        break;
+                    case KeyEvent.VK_A:
+                        leftPressed = true;
+                        break;
+                    case KeyEvent.VK_D:
+                        rightPressed = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_W:
+                        upPressed = false;
+                        break;
+                    case KeyEvent.VK_S:
+                        downPressed = false;
+                        break;
+                    case KeyEvent.VK_A:
+                        leftPressed = false;
+                        break;
+                    case KeyEvent.VK_D:
+                        rightPressed = false;
+                        break;
+                }
+            }
+        });
+
         for (int i = 0; i < 1600; i++) {
             Line line = new Line();
             line.z = i * segL;
@@ -52,18 +100,51 @@ public class RacePlay extends JFrame {
             lines.add(line);
         }
         N = lines.size();
-        ActionListener listener = new AbstractAction() {
+
+        Timer timer = new Timer(10, new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                // drawPanel.repaint();
+                updateCarPosition();
+                drawPanel.repaint();
             }
-        };
-        Timer timer = new Timer(10, listener);
+        });
         timer.start();
+
         add(drawPanel);
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void updateCarPosition() {
+        if (upPressed) {
+            if (velocidade < velocidadeMaxima) {
+                velocidade += aceleracao;
+            }
+        } else {
+            if (velocidade > 0) {
+                velocidade -= desaceleracao;
+            }
+        }
+
+        if (downPressed) {
+            if (velocidade > 0) {
+                velocidade -= frenagem;
+                if (velocidade < 0) {
+                    velocidade = 0;
+                }
+            }
+        }
+
+        if (leftPressed) {
+            playerX -= 20;
+        }
+        if (rightPressed) {
+            playerX += 20;
+        }
+
+        pos += velocidade;
     }
 
     private class DrawPanel extends JPanel {
@@ -76,43 +157,6 @@ public class RacePlay extends JFrame {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//          VIRAR PARA A ESQUERDA USANDO A
-            String VK_A = "VK_A";
-            KeyStroke W = KeyStroke.getKeyStroke(KeyEvent.VK_A, 0);
-            InputMap inputMap = getInputMap(WHEN_IN_FOCUSED_WINDOW);
-            inputMap.put(W, VK_A);
-            ActionMap actionMap = getActionMap();
-            actionMap.put(VK_A, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    playerX -= 20;
-                    pos += 500;
-                    drawPanel.repaint();
-                }
-            });
-//          VIRAR PARA A DIREITA USANDO D
-            String VK_D = "VK_D";
-            KeyStroke WVK_D = KeyStroke.getKeyStroke(KeyEvent.VK_D, 0);
-            inputMap.put(WVK_D, VK_D);
-            actionMap.put(VK_D, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    playerX += 20;
-                    pos += 500;
-                    drawPanel.repaint();
-                }
-            });
-//          ACELERAR USANDO W
-            String VK_W = "VK_W";
-            KeyStroke WVK_W = KeyStroke.getKeyStroke(KeyEvent.VK_W, 0);
-            inputMap.put(WVK_W, VK_W);
-            actionMap.put(VK_W, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    pos += 500;
-                    drawPanel.repaint();
-                }
-            });
         }
 
         protected void paintComponent(Graphics g) {
@@ -156,8 +200,7 @@ public class RacePlay extends JFrame {
                     drawQwad(g, road, (int) p.X, (int) p.Y, (int) (p.W * 0.7), (int) l.X, (int) l.Y, (int) (l.W * 0.7));
                 }
             }
-//draw Skye
-
+            // draw Skye
             Graphics g9d = g;
             g9d.setColor(Color.blue);
             g9d.fillRect(0, 0, 1600, 387);
@@ -167,7 +210,6 @@ public class RacePlay extends JFrame {
                                 "C:/Users/HP/Desktop/paintr/tangarfa/workspace/java-tmz-test/ressource/cropped-sky-web-background.jpg")),
                         0, 0, this);
             } catch (IOException e) {
-
                 e.printStackTrace();
             }
 
@@ -175,15 +217,11 @@ public class RacePlay extends JFrame {
             for (int n = startPos + 300; n > startPos; n--) {
                 if (lines.get(n % N).drawTree) {
                     lines.get(n % N).drawGraphic();
-//					System.out.println("OK");
                     Graphics gd = g;
-                    //gd.set
-					/*gd.setColor(Color.BLACK);
-						gd.fillRect((int) lines.get(n % N).destX, (int) lines.get(n % N).destY,23,70);
-					*/
                 }
             }
         }
+
         void drawQwad(Graphics g, Color c, int x1, int y1, int w1, int x2, int y2, int w2) {
             Graphics g9d = g;
             int[] x9Points = { x1 - w1, x2 - w2, x2 + w2, x1 + w1 };
@@ -192,10 +230,12 @@ public class RacePlay extends JFrame {
             g9d.setColor(c);
             g9d.fillPolygon(x9Points, y9Points, n9Points);
         }
+
         public Dimension getPreferredSize() {
             return new Dimension(D_W, D_H);
         }
     }
+
     public static void main(Veiculo veiculoEscolhido) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -203,6 +243,7 @@ public class RacePlay extends JFrame {
             }
         });
     }
+
     class Line {
         double x, y, z;
         double X, Y, W;
@@ -213,15 +254,18 @@ public class RacePlay extends JFrame {
         double destW;
         double destH;
         boolean drawTree = false;
+
         public Line() {
             curve = x = y = z = 0;
         }
+
         void project(int camX, int camY, int camZ) {
             scale = camD / (z - camZ);
             X = (1 + scale * (x - camX)) * with / 2;
             Y = (1 - scale * (y - camY)) * height / 2;
             W = scale * roadW * with / 2;
         }
+
         void drawGraphic() {
             int W = 100;
             int h = 100;
