@@ -18,6 +18,7 @@ public class Main extends Application {
     }
 
     public void mostrarMenuPrincipal() throws Exception {
+    System.out.println("Inicio da funcao");
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-menu.fxml"));
     Scene scene = new Scene(fxmlLoader.load(), 1280, 800);
     stage.setTitle("Nitro Gear - Menu Principal");
@@ -55,6 +56,7 @@ public class Main extends Application {
     }
 
     public void voltar() throws Exception {
+        
         mostrarMenuPrincipal();
     }
 

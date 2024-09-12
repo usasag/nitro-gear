@@ -6,7 +6,7 @@ import com.example.javafxdemo.Main;
 public class HelpController {
     
     @FXML
-    private Button voltarButton;
+    private Button voltarBtn;
 
     private Main mainApp;
 
@@ -16,7 +16,7 @@ public class HelpController {
 
     @FXML
     private void initialize() {
-        voltarButton.setOnAction(event -> {
+        voltarBtn.setOnAction(event -> {
             try {
                 mainApp.mostrarMenuPrincipal();
             } catch (Exception e) {
