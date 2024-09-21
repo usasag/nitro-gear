@@ -2,11 +2,7 @@ package com.example.javafxdemo.race;
 
 import com.example.javafxdemo.logic.Veiculo;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +22,7 @@ public class RacePlay extends JFrame {
     private int N;
     private int playerX = 0;
     private int pos = 0;
+    private int lapCount = 0;
     private boolean upPressed = false;
     private boolean downPressed = false;
     private boolean leftPressed = false;
@@ -146,8 +143,9 @@ public class RacePlay extends JFrame {
 //        Reinicia a posição do carro
         if (pos >= N * segL) {
             pos = 0;
-
+            lapCount++;
         }
+
 
         pos += velocidade;
     }
@@ -168,7 +166,12 @@ public class RacePlay extends JFrame {
             super.paintComponent(g);
             drawValues(g);
 
-            // Desenhar a imagem fixa abaixo do sprite do carro
+            // Desenhar o contador de voltas no topo da tela
+            g.setColor(Color.WHITE); // Cor do texto
+            g.setFont(new Font("Arial", Font.BOLD, 24)); // Fonte e tamanho do texto
+            g.drawString("Voltas: " + lapCount +"/3", 20, 40); // Posição e texto
+
+            // Desenhar a imagem do carro
             if (carImage != null) {
                 int x = (getWidth() - carImage.getWidth(this)) / 2; // Centralizar horizontalmente
                 int y = getHeight() - carImage.getHeight(this); // Posição vertical ajustada
