@@ -143,6 +143,11 @@ public class RacePlay extends JFrame {
         if (rightPressed) {
             playerX += 20;
         }
+//        Reinicia a posição do carro
+        if (pos >= N * segL) {
+            pos = 0;
+
+        }
 
         pos += velocidade;
     }
