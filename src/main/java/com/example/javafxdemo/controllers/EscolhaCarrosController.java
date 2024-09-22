@@ -31,7 +31,7 @@ public class EscolhaCarrosController {
     private Button voltarBtn;
 
     private Main mainApp;
-    private Veiculo veiculoEscolhido;
+    public Veiculo veiculoEscolhido;
 
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
@@ -72,10 +72,14 @@ public class EscolhaCarrosController {
 
     private void selecionarCarro(String nomeCarro) {
         comecarCorridaBtn.setDisable(false);
+        System.out.println("antes do sprite");
+        System.out.println("sprite: " + nomeCarro);
         Image sprite = new Image(getClass().getResourceAsStream("/carsprites/" + nomeCarro + ".png"));
         carroPreview.setImage(sprite);
         System.out.println("depois do sprite");
         double[] velocidadesMaximas = {50, 100, 150}; // Exemplo de velocidades para 3 marchas
-        veiculoEscolhido = new Veiculo(nomeCarro, sprite, velocidadesMaximas);
+        veiculoEscolhido = new Veiculo(nomeCarro, sprite, velocidadesMaximas, 5);
+
+//        comecarCorridaBtn.setDisable(false);
     }
 }
