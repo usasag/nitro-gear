@@ -11,12 +11,6 @@ public class Jogador {
 
     public void controlarVeiculo(String comando) {
         switch (comando) {
-            case "ACELERAR":
-                veiculo.acelerar();
-                break;
-            case "FREAR":
-                veiculo.frear();
-                break;
             case "ESQUERDA":
                 veiculo.moverParaEsquerda();
                 break;

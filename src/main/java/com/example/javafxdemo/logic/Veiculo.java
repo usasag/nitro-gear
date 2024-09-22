@@ -6,33 +6,19 @@ public class Veiculo {
     private String nome;
     private Image sprite;
     private double[] velocidadesMaximas; // Array para diferentes marchas
-    private double aceleracao; // Será definida pela marcha atual
     private double velocidadeAtual;
     private double posicaoX;
     private double posicaoY;
     private int marchaAtual;
 
-    public Veiculo(String nome, Image sprite, double[] velocidadesMaximas, double aceleracao) {
+    public Veiculo(String nome, Image sprite, double[] velocidadesMaximas) {
         this.nome = nome;
         this.sprite = sprite;
         this.velocidadesMaximas = velocidadesMaximas;
-        this.aceleracao = aceleracao;
         this.velocidadeAtual = 0;
         this.posicaoX = 0;
         this.posicaoY = 0;
         this.marchaAtual = 0; // Inicia na primeira marcha
-    }
-
-    public void acelerar() {
-        if (velocidadeAtual < velocidadesMaximas[marchaAtual]) {
-            velocidadeAtual += aceleracao;
-        }
-    }
-
-    public void frear() {
-        if (velocidadeAtual > 0) {
-            velocidadeAtual -= aceleracao;
-        }
     }
 
     public void aumentarMarcha() {
@@ -79,14 +65,6 @@ public class Veiculo {
 
     public void setVelocidadesMaximas(double[] velocidadesMaximas) {
         this.velocidadesMaximas = velocidadesMaximas;
-    }
-
-    public double getAceleracao() {
-        return aceleracao;
-    }
-
-    public void setAceleracao(double aceleracao) {
-        this.aceleracao = aceleracao;
     }
 
     public double getVelocidadeAtual() {

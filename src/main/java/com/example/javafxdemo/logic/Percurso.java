@@ -11,6 +11,11 @@ public class Percurso {
         this.mapa = mapa;
     }
 
+    public Percurso(Image mapa) {
+        this.nome = "Percurso";
+        this.mapa = mapa;
+    }
+
     // Getters e Setters
 
     public String getNome() {
