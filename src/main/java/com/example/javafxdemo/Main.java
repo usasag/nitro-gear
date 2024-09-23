@@ -60,22 +60,6 @@ public class Main extends Application {
         mostrarMenuPrincipal();
     }
 
-    public void iniciarCorrida(Veiculo veiculoEscolhido) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("corrida.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 800);
-
-        Jogador jogador = new Jogador("Jogador1", veiculoEscolhido);
-        new Controles(jogador, scene);
-
-        stage.setTitle("Nitro Gear - Corrida");
-        stage.setScene(scene);
-
-        // Controlador da corrida
-        // CorridaController controller = fxmlLoader.getController();
-        // controller.setMainApp(this);
-        stage.show();
-    }
-
     public static void main(String[] args) {
         launch();
     }

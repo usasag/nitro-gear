@@ -1,6 +1,8 @@
 package com.example.javafxdemo.race;
 
 import com.example.javafxdemo.logic.Veiculo;
+import com.example.javafxdemo.race.GameOverScreen;
+import com.example.javafxdemo.Main;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -14,15 +16,17 @@ import javax.swing.*;
 public class RacePlay extends JFrame {
     private static final int D_W = 1500;
     private static final int D_H = 1200;
+    private Main mainApp = new Main();
+    private GameOverScreen gameOverScreen;
     private int with = 1600;
     private int height = 768;
-    private int roadW = 768;
+    private int roadW = 1536;
     private int segL = 768;
     private double camD = 0.84;
     private int N;
     private int playerX = 0;
     private int pos = 0;
-    private int lapCount = 1;
+    private int lapCount = 4;
     private boolean upPressed = false;
     private boolean downPressed = false;
     private boolean leftPressed = false;
@@ -99,8 +103,13 @@ public class RacePlay extends JFrame {
         Timer timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateCarPosition();
-                drawPanel.repaint();
+                if (lapCount < 4) {
+                    updateCarPosition();
+                    drawPanel.repaint();
+                } else {
+                    gameOver();
+                    ((Timer) e.getSource()).stop();
+                }
             }
         });
         timer.start();
@@ -143,12 +152,6 @@ public class RacePlay extends JFrame {
             pos = 0;
             lapCount++;
         }
-
-        if (lapCount > 3) {
-            System.out.println("Fim da corrida");
-            System.exit(0);
-        }
-
 
         pos += velocidade;
     }
@@ -244,6 +247,11 @@ public class RacePlay extends JFrame {
         public Dimension getPreferredSize() {
             return new Dimension(D_W, D_H);
         }
+    }
+
+    public void gameOver() {
+        gameOverScreen = new GameOverScreen(mainApp);
+        gameOverScreen.setVisible(true);
     }
 
     public static void main(Veiculo veiculoEscolhido) {

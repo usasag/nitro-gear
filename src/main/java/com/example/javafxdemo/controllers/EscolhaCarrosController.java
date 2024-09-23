@@ -56,7 +56,6 @@ public class EscolhaCarrosController {
 
         comecarCorridaBtn.setOnAction(event -> {
             try {
-//                mainApp.iniciarCorrida(veiculoEscolhido)
                 EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         new RacePlay(veiculoEscolhido);
@@ -79,7 +78,5 @@ public class EscolhaCarrosController {
         System.out.println("depois do sprite");
         double[] velocidadesMaximas = {50, 100, 150}; // Exemplo de velocidades para 3 marchas
         veiculoEscolhido = new Veiculo(nomeCarro, sprite, velocidadesMaximas, 5);
-
-//        comecarCorridaBtn.setDisable(false);
     }
 }
