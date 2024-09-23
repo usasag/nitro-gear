@@ -22,7 +22,7 @@ public class RacePlay extends JFrame {
     private int N;
     private int playerX = 0;
     private int pos = 0;
-    private int lapCount = 0;
+    private int lapCount = 1;
     private boolean upPressed = false;
     private boolean downPressed = false;
     private boolean leftPressed = false;
@@ -153,6 +153,11 @@ public class RacePlay extends JFrame {
         if (pos >= N * segL) {
             pos = 0;
             lapCount++;
+        }
+
+        if (lapCount > 3) {
+            System.out.println("Fim da corrida");
+            System.exit(0);
         }
 
 
