@@ -26,7 +26,7 @@ public class RacePlay extends JFrame {
     private int N;
     private int playerX = 0;
     private int pos = 0;
-    private int lapCount = 4;
+    private int lapCount = 1;
     private boolean upPressed = false;
     private boolean downPressed = false;
     private boolean leftPressed = false;
