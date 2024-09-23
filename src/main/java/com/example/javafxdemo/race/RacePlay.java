@@ -1,6 +1,6 @@
 package com.example.javafxdemo.race;
 
-import com.example.javafxdemo.logic.*;
+import com.example.javafxdemo.logic.Veiculo;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -31,23 +31,12 @@ public class RacePlay extends JFrame {
     private double aceleracao = 20;
     private double desaceleracao = 1;
     private double frenagem = 5;
-    private double velocidadeMaxima = 600;
+    private double velocidadeMaxima = 500;
     private List<Line> lines = new ArrayList<>();
-    private List<Integer> listValues = new ArrayList<>();
-    private DrawPanel drawPanel = new DrawPanel();
-    private Corrida corrida;
+    private DrawPanel drawPanel;
 
     public RacePlay(Veiculo veiculoEscolhido) {
-        System.out.println(veiculoEscolhido.getNome());
-
-        Jogador jogador = new Jogador("Player 1", veiculoEscolhido);
-        List<Jogador> jogadores = new ArrayList<>();
-        jogadores.add(jogador);
-
-        Percurso percurso = new Percurso("Percurso 1", null);
-        List<IA> ias = new ArrayList<>();
-        corrida = new Corrida(jogadores, ias, percurso);
-
+        drawPanel = new DrawPanel(veiculoEscolhido); // Passando veículo escolhido para o painel de desenho
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -149,7 +138,7 @@ public class RacePlay extends JFrame {
         if (rightPressed) {
             playerX += 20;
         }
-//        Reinicia a posição do carro
+
         if (pos >= N * segL) {
             pos = 0;
             lapCount++;
@@ -162,16 +151,15 @@ public class RacePlay extends JFrame {
 
 
         pos += velocidade;
-        corrida.atualizar();
     }
 
     private class DrawPanel extends JPanel {
         private Image carImage;
 
-        public DrawPanel() {
-            // Carregar imagem do carro
+        public DrawPanel(Veiculo veiculoEscolhido) {
+            // Carregar imagem do carro usando o nome do veículo
             try {
-                carImage = ImageIO.read(getClass().getResourceAsStream("/carsprites/GenericCar.png"));
+                carImage = ImageIO.read(getClass().getResourceAsStream("/carsprites/" + veiculoEscolhido.getNome() + "Ingame.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -181,20 +169,16 @@ public class RacePlay extends JFrame {
             super.paintComponent(g);
             drawValues(g);
 
-            // Desenhar o contador de voltas no topo da tela
             g.setColor(Color.WHITE); // Cor do texto
             g.setFont(new Font("Arial", Font.BOLD, 24)); // Fonte e tamanho do texto
-            g.drawString("Voltas: " + lapCount +"/3", 20, 40); // Posição e texto
+            g.drawString("Voltas: " + lapCount + "/3", 20, 40); // Posição e texto
 
             // Desenhar a imagem do carro
             if (carImage != null) {
-                int x = (getWidth() - carImage.getWidth(this)) / 2; // Centralizar horizontalmente
-                int y = getHeight() - carImage.getHeight(this); // Posição vertical ajustada
+                int x = (getWidth() - carImage.getWidth(this)) / 2;
+                int y = getHeight() - carImage.getHeight(this);
                 g.drawImage(carImage, x, y, this);
             }
-
-            // Desenhar minimapa
-            drawMinimap(g);
         }
 
         private void drawValues(Graphics g) {
@@ -226,7 +210,7 @@ public class RacePlay extends JFrame {
                     drawQwad(g, road, (int) p.X, (int) p.Y, (int) (p.W * 0.7), (int) l.X, (int) l.Y, (int) (l.W * 0.7));
                 }
             }
-            // draw Sky
+            // draw Skye
             Graphics g9d = g;
             g9d.setColor(Color.blue);
             g9d.fillRect(0, 0, 1600, 387);
@@ -248,41 +232,6 @@ public class RacePlay extends JFrame {
             }
         }
 
-        private void drawMinimap(Graphics g) {
-            int minimapSize = 200;
-            int minimapX = getWidth() - minimapSize - 20;
-            int minimapY = 20;
-            double scale = 0.0005; // Ajuste a escala conforme necessário
-
-            g.setColor(Color.GRAY);
-            g.fillRect(minimapX, minimapY, minimapSize, minimapSize);
-
-            g.setColor(Color.BLACK);
-            g.drawRect(minimapX, minimapY, minimapSize, minimapSize);
-
-            // Desenhar o percurso no minimapa
-            int prevX = minimapX + minimapSize / 2;
-            int prevY = minimapY + minimapSize / 2;
-            for (Line line : lines) {
-                int x = prevX + (int) (line.curve * scale * 10);
-                int y = prevY + (int) (line.z * scale);
-                g.setColor(Color.WHITE);
-                g.drawLine(prevX, prevY, x, y);
-                prevX = x;
-                prevY = y;
-            }
-
-            // Desenhar o carro do jogador no minimapa
-            int playerMinimapX = minimapX + minimapSize / 2 + (int) (playerX * scale);
-            int playerMinimapY = minimapY + minimapSize / 2 + (int) (pos * scale);
-            g.setColor(Color.GREEN);
-            g.fillRect(playerMinimapX - 2, playerMinimapY - 2, 4, 4); // Ajuste a espessura do ponto do carro
-
-            // Desenhar a linha de chegada
-            g.setColor(Color.RED);
-            g.drawLine(minimapX, minimapY + minimapSize - 10, minimapX + minimapSize, minimapY + minimapSize - 10);
-        }
-
         void drawQwad(Graphics g, Color c, int x1, int y1, int w1, int x2, int y2, int w2) {
             Graphics g9d = g;
             int[] x9Points = { x1 - w1, x2 - w2, x2 + w2, x1 + w1 };
@@ -300,6 +249,7 @@ public class RacePlay extends JFrame {
     public static void main(Veiculo veiculoEscolhido) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new RacePlay(veiculoEscolhido);
             }
         });

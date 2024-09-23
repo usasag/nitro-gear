@@ -9,6 +9,7 @@ public class IA {
 
     public void atualizar() {
         // Lógica de IA para controlar o veículo
+        veiculo.acelerar();
     }
 
     // Getters e Setters

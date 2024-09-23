@@ -55,6 +55,11 @@ public class Main extends Application {
         stage.show();
     }
 
+    public void voltar() throws Exception {
+        
+        mostrarMenuPrincipal();
+    }
+
     public void iniciarCorrida(Veiculo veiculoEscolhido) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("corrida.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 800);
